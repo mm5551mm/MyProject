@@ -1,29 +1,36 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Xunit;
 
-namespace MyProject.E2ETests;
-
-public class GoogleTests : IDisposable
+namespace MyProject.E2ETests
 {
-    private readonly IWebDriver _driver;
-
-    public GoogleTests()
+    public class GoogleTests : IDisposable
     {
-        _driver = new ChromeDriver();
-    }
+        private readonly IWebDriver driver;
 
-    [Fact]
-    public void OpenGoogle_ShouldHaveCorrectTitle()
-    {
-        // Open browser
-        _driver.Navigate().GoToUrl("https://www.google.com");
+        public GoogleTests()
+        {
+            var options = new ChromeOptions();
 
-        // Verify title
-        Assert.Contains("Google", _driver.Title);
-    }
+            options.AddArgument("--headless");
+            options.AddArgument("--no-sandbox");
+            options.AddArgument("--disable-dev-shm-usage");
 
-    public void Dispose()
-    {
-        _driver.Quit();
+            driver = new ChromeDriver(options);
+        }
+
+        [Fact]
+        public void OpenGoogle_ShouldHaveCorrectTitle()
+        {
+            driver.Navigate().GoToUrl("https://www.google.com");
+
+            Assert.Contains("Google", driver.Title);
+        }
+
+        public void Dispose()
+        {
+            driver.Quit();
+            driver.Dispose();
+        }
     }
 }
