@@ -12,10 +12,10 @@ namespace MyProject.E2ETests
         {
             var options = new ChromeOptions();
 
-            options.AddArgument("--headless");
+            options.AddArgument("--headless=new");
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
-            options.AddArgument("--remote-allow-origins=*");
+            options.AddArgument("--disable-gpu");
 
             driver = new ChromeDriver(options);
         }
