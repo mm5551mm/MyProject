@@ -15,6 +15,7 @@ namespace MyProject.E2ETests
             options.AddArgument("--headless");
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
+            options.AddArgument("--remote-allow-origins=*");
 
             driver = new ChromeDriver(options);
         }
