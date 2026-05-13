@@ -1,11 +1,10 @@
-namespace MyProject.IntegrationTests
-{
-    public class UnitTest1
-    {
-        [Fact]
-        public void Test1()
-        {
+using Xunit;
 
-        }
+public class IntegrationTests
+{
+    [Fact]
+    public void Integration_Test()
+    {
+        Assert.True(true);
     }
 }
